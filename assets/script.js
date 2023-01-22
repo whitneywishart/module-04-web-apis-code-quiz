@@ -1,6 +1,25 @@
 //WHEN I click the start button
 //THEN a timer starts and I am presented with a question
 
+//Click start quiz button and start the timer
+//Start quiz and timer
+var timeElement = document.querySelector("#start-quiz");
+var timeDisplay = document.querySelector("#time-display");
+var secondsElapsed = 0;
+
+function startTimer() {
+    var timerInterval = setInterval(function () {
+        secondsElapsed++;
+        timeDisplay.textContent = "Time: " + secondsElapsed;
+
+    }, 1000);
+}
+
+
+
+
+
+
 //WHEN I answer a question
 //THEN I am presented with another question
 
