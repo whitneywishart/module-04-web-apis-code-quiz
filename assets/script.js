@@ -15,6 +15,36 @@ function startTimer() {
     }, 1000);
 }
 
+//Questions and options
+var page01Question = {
+    question01: "Commonly used data types DO NOT include:",
+    options: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
+    correct: 2
+}
+
+
+function displayQuestion(q) {
+    var question01Div = document.getElementById("question01");
+    question01Div.textContent = q.question01;
+
+    var opts = document.querySelectorAll(".option-button");
+    opts.forEach(function (element, index) {
+        element.textContent = q.options[index];
+        element.addEventListener("click", function () {
+            if (q.correct == index) {
+                console.log("Correct!");
+            } else {
+                console.log("Wrong!");
+            }
+        })
+    });
+
+
+}
+
+displayQuestion(page01Question);
+
+
 
 
 
