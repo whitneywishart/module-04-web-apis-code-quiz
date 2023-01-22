@@ -17,8 +17,10 @@ h1 {
 p {
     font-weight: 400;
     text-align: center;
-    font-size: 30px;
+    font-size: 26px;
     line-height: 2.2rem;
+    width: 60%;
+    margin: auto;
 }
 
 [onClick] {
