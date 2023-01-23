@@ -1,98 +1,128 @@
-//WHEN I click the start button
-//THEN a timer starts and I am presented with a question
+var introduction = document.getElementById("introduction")
+var startButton = document.getElementById("start-btn")
+var nextButton = document.getElementById("next-btn")
+var questionContainerElement = document.getElementById("question-container")
+var questionElement = document.getElementById("question")
+var answerButtonsElement = document.getElementById("answer-buttons")
 
-//Start quiz and timer
-var timeDisplay = document.getElementById("time-display");
-var secondsLeft = 300;
+var currentQuestionIndex
 
-function begin() {
-    sendQuiz();
-    var timerInterval = setInterval(function () {
-        secondsLeft--;
-        timeDisplay.textContent = "Time: " + secondsLeft;
-    }, 1000);
+introduction.addEventListener("click", startQuiz)
+startButton.addEventListener("click", startQuiz)
+nextButton.addEventListener("click", () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
+
+function startQuiz() {
+    introduction.classList.add("hide")
+    startButton.classList.add("hide")
+    orderedQuestions = questions.sort()
+    currentQuestionIndex = 0
+    questionContainerElement.classList.remove("hide")
+    setNextQuestion()
 }
 
-
-//Display intro and start quiz button
-var quizIntro = {
-    title: "Coding Quiz Challenge",
-    description: "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!",
-    startButton: "Start Quiz"
+function setNextQuestion() {
+    resetState()
+    showQuestion(orderedQuestions[currentQuestionIndex])
 }
 
-function displayIntro(d) {
-    var introTitleDiv = document.getElementById("title");
-    var introDescriptionDiv = document.getElementById("description");
-
-    introTitleDiv.textContent = d.title;
-    introDescriptionDiv.textContent = d.description;
-
-    var startQuiz = document.getElementById("start-quiz");
-    startQuiz.textContent = "Start Quiz"
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        var button = document.createElement("button")
+        button.innerText = answer.text
+        button.classList.add("btn")
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener("click", selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })
 }
 
-displayIntro(quizIntro);
-
-
-
-//Display first question on start quiz button click
-function sendQuiz() {
-    var firstQuestion = {
-        question01: "Commonly used data types DO NOT include:",
-        options: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
-        correct: 2
+function resetState() {
+    clearStatusClass(document.body)
+    nextButton.classList.add("hide")
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
-
-
-    function displayQuestion(q) {
-        var question01Div = document.getElementById("question01");
-        question01Div.textContent = q.question01;
-
-        var opts = document.querySelectorAll(".option-button");
-
-        opts.forEach(function (element, index) {
-            element.textContent = q.options[index];
-            element.addEventListener("click", function () {
-                if (q.correct == index) {
-                    console.log("Correct!");
-                } else {
-                    console.log("Wrong!");
-                }
-            })
-        });
-
-
-    }
-
-    displayQuestion(firstQuestion);
-
 }
 
+function selectAnswer(e) {
+    var selectedButton = e.target
+    var correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+    if (orderedQuestions.length > currentQuestionIndex + 1) {
+        nextButton.classList.remove("hide")
+    } else {
+        startButton.innerText = "Restart"
+        startButton.classList.remove("hide")
+    }
+}
 
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add("correct")
+    } else {
+        element.classList.add("wrong")
+    }
+}
 
+function clearStatusClass(element) {
+    element.classList.remove("correct")
+    element.classList.remove("wrong")
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//WHEN I answer a question
-//THEN I am presented with another question
-
-//WHEN I answer a question incorrectly
-//THEN time is subtracted from the clock
-
-//WHEN all questions are answered or the timer reaches 0
-//THEN the game is over
-
-//WHEN the game is over
-//THEN I can save my initials and score
+var questions = [
+    {
+        question: "Commonly used data types DO NOT include:",
+        answers: [
+            { text: "1. strings", correct: false },
+            { text: "2. booleans", correct: false },
+            { text: "3. alerts", correct: true },
+            { text: "4. numbers", correct: false }
+        ]
+    },
+    {
+        question: "The condition in an if / else statement is enclosed with ______.",
+        answers: [
+            { text: "1. quotes", correct: false },
+            { text: "2. curly brackets", correct: false },
+            { text: "3. parenthesis", correct: true },
+            { text: "4. square brackets", correct: false }
+        ]
+    },
+    {
+        question: "Arrays in JavaScript can be used to store ______.",
+        answers: [
+            { text: "1. numbers and strings", correct: false },
+            { text: "2. other arrays", correct: false },
+            { text: "3. booleans", correct: false },
+            { text: "4. all of the above", correct: true }
+        ]
+    },
+    {
+        question: "String values must be enclosed within ______ when being assigned to variables.",
+        answers: [
+            { text: "1. commas", correct: false },
+            { text: "2. curly brackets", correct: false },
+            { text: "3. quotes", correct: true },
+            { text: "4. parenthesis", correct: false }
+        ]
+    },
+    {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answers: [
+            { text: "1. JavaScript", correct: false },
+            { text: "2. terminal/bash", correct: false },
+            { text: "3. for loops", correct: false },
+            { text: "4. console.log", correct: true }
+        ]
+    }
+]

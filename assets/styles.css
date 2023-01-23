@@ -1,18 +1,22 @@
+/* :root {
+  --hue-neutral: 200;
+  --hue-wrong: 0;
+  --hue-correct: 145;
+} */
+
 body {
     font-family: "Roboto Flex";
     padding: 1rem;
+    /* --hue: var(--hue-neutral);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(var(--hue), 100%, 20%); */
 }
-
-h1 {
-    font-weight: 600;
-    text-align: center;
-    font-size: 50px;
-    padding-bottom: 1rem;
-    margin: auto;
-    /* width: 50%; */
-}
-
-
 
 p {
     font-weight: 400;
@@ -23,12 +27,35 @@ p {
     margin: auto;
 }
 
-[onClick] {
-    cursor: pointer;
+h1 {
+    font-weight: 600;
+    /* text-align: center; */
+    font-size: 50px;
+    padding-bottom: 1rem;
+    margin: auto;
+
 }
 
 a {
     text-decoration: none;
+}
+
+/* body.correct {
+    --hue: var(--hue-correct);
+} */
+
+/* body.wrong {
+    --hue: var(--hue-wrong);
+} */
+
+
+
+.quiz-container {
+    border: black 1px solid;
+    border-radius: 5px;
+    padding: 2rem;
+    height: 75vh;
+    width: 100%;
 }
 
 .top-line-container {
@@ -48,55 +75,63 @@ a {
     color: #b03fe2
 }
 
-
-
 .quiz-container {
     border: black 1px solid;
     border-radius: 5px;
     padding: 2rem;
     height: 75vh;
-    width: 100%;
-
-
+    /* width: 100%; */
 }
 
-.button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+
+#introduction {
+    text-align: center;
+}
+
+.btn {
+  
     background-color: #351c75;
     color: white;
     border-radius: 8px;
     padding: 1rem .5rem 1rem .5rem;
-    position: relative;
     width: 8rem;
     margin: 1.5rem auto;
     font-size: 20px;
+    border: none;
 }
 
-.question {
-    margin: auto;
-    width: 50%;
-
-}
-
-.question>h1 {
-    text-align: left;
-
-}
-
-
-.option-button {
-    background-color: #351c75;
-    color: white;
-    border-radius: 8px;
-    padding: 1rem .5rem 1rem 1rem;
-    margin: .5rem 0rem .75rem 0rem;
-    width: 12rem;
-    font-size: 20px;
-}
-
-.option-button:hover {
+.btn:hover {
     background-color: #b03fe2;
     cursor: pointer;
+}
+
+/* .btn.correct {
+    --hue: var(--hue-correct);
+    color: black;
+} */
+
+/* .btn.wrong {
+    --hue: var(--hue-wrong);
+} */
+
+/* .start-btn,
+.next-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+} */
+
+/* .controls {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+} */
+
+.hide {
+    display: none;
 }

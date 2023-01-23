@@ -25,41 +25,33 @@
             <div class="top-line-item" id="time-display">Time: 300</div>
         </div>
 
+        <div class="container">
+            <div id="question-container" class="hide">
+                <h1>
+                    <div id="question"></div>
+                </h1>
+                <div id="answer-buttons">
+                    <button class="btn"></button>
+                    <button class="btn"></button>
+                    <button class="btn"></button>
+                    <button class="btn"></button>
 
-        <!-- Introduction -->
-        <h1>
-            <div id="title"></div>
-        </h1>
-        <p id="description">
-        </p>
+                </div>
 
-
-        <!-- Start quiz button -->
-        <div class="button" onclick="begin()" id="start-quiz"></div>
-    </div>
-
-
-
-    <!-- Question -->
-    <div class="question">
-        <h1>
-            <div id="question01"></div>
-        </h1>
-
-        <!-- Answer options -->
-
-        <ul>
-            <li class="option-button"></li>
-            <li class="option-button"></li>
-            <li class="option-button"></li>
-            <li class="option-button"></li>
-        </ul>
-
-    </div>
+            </div>
+            <div id="introduction">
+                <h1>Coding Quiz Challenge</h1>
+                <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
+                    answers will penalize your score/time by ten seconds!</p>
+            </div>
+            <div class="controls">
+                <button id="start-btn" class="start-btn btn">Start</button>
+                <button id="next-btn" class="next-btn btn hide">Next</button>
+            </div>
+        </div>
 
 
-
-    <script src="./assets/script.js"></script>
+        <script src="./assets/script.js"></script>
 </body>
 
 </html>
