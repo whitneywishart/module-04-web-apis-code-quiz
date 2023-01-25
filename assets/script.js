@@ -1,7 +1,7 @@
 //VARIABLE DEFINITIONS
 
 // QUESTIONS
-const questions = [
+var questions = [
     {
         question: "Commonly used data types DO NOT include:",
         choices: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
@@ -78,7 +78,7 @@ function newQuiz() {
     startDiv.style.display = "none";
     questionDiv.style.display = "block";
     timer.style.display = "block";
-    
+
 
     var startTimer = setInterval(function () {
         totalTime--;
@@ -106,7 +106,9 @@ function nextQuestion() {
     choice02.textContent = questions[questionIndex].choices[1];
     choice03.textContent = questions[questionIndex].choices[2];
     choice04.textContent = questions[questionIndex].choices[3];
+
 }
+
 
 //SHOW ANSWER FEEDBACK FUNCTIONS
 function checkAnswer(answer) {
@@ -136,13 +138,22 @@ function checkAnswer(answer) {
     }
 }
 
-function choose01() { checkAnswer(0); }
+function choose01() {
+    checkAnswer(0);
+}
 
-function choose02() { checkAnswer(1); }
+function choose02() {
+    checkAnswer(1);
+}
 
-function choose03() { checkAnswer(2); }
+function choose03() {
+    checkAnswer(2);
+}
 
-function choose04() { checkAnswer(3); }
+function choose04() {
+    checkAnswer(3);
+}
+
 
 
 
@@ -237,6 +248,8 @@ choice01.addEventListener("click", choose01);
 choice02.addEventListener("click", choose02);
 choice03.addEventListener("click", choose03);
 choice04.addEventListener("click", choose04);
+
+
 
 submitInitialBtn.addEventListener("click", function (event) {
     storeHighScores(event);
